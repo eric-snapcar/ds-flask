@@ -5,3 +5,4 @@ pandas==0.21.0
 sklearn==0.0
 distribute
 wsgiref
+Werkzeug
