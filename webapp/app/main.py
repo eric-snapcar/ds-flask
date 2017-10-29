@@ -85,7 +85,7 @@ def getRecommendation(film_id ):
     selectedMovie, recommendations = getRecommendation_(movies,distanceMatrix,film_id)
     return getRecommendation_display(selectedMovie,recommendations  )
 def getRecommendation_display(selectedMovie,recommendations ):
-    if movie is None or recommendations is None:
+    if selectedMovie is None or recommendations is None:
         return 'Recommendation not available for this movie'
     else:
         selectedMovie_ = selectedMovie[['movie_title','film_id']].to_string(index=False,header=False)
