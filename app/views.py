@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import Flask, render_template, request
+from . import models
 # Init
 app = Flask(__name__)
 app.config.from_object('config')
@@ -18,7 +19,7 @@ def result():
 @app.route('/recommend')
 def recommend():
     film_id = request.args.get('film_id') or "None"
-    return render_template('recommend.html', film_id=film_id)
+    return render_template('recommend.html', film_id=film_id, recommendation = models.recommend())
 # http://localhost:5000/result?description=DescriptionBis&user_name=Eric
 # Main
 if __name__ == "__main__":

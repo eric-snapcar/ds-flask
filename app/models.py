@@ -21,3 +21,6 @@ class Content(db.Model):
 def test_command():
     db.session.add(Content("TEST1", Gender['male']))
     db.session.add(Content("TEST2", Gender['female']))
+# Command
+def recommend():
+    return "Batman"
