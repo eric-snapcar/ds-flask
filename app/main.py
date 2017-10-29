@@ -1,3 +1,3 @@
 # Command
-def recommend():
+def recommend_():
     return "Batman"
