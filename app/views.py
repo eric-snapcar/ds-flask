@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import Flask, render_template, request
-from . import models
+from .main.py import app
 # Init
 app = Flask(__name__)
 app.config.from_object('config')
