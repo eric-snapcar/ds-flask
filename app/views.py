@@ -16,7 +16,7 @@ def result():
 
 
 @app.route('/recommend')
-def result():
+def recommend():
     film_id = request.args.get('film_id') or "None"
     return render_template('recommend.html', film_id=film_id)
 # http://localhost:5000/result?description=DescriptionBis&user_name=Eric
