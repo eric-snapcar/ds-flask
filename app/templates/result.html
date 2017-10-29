@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
 {% block test %}
-window.fbAsyncInit = function() {
-   FB.init({
-     appId      : 'your-app-id',
-     xfbml      : true,
-     version    : 'v2.1'
-   });
- };
 
- 
+
 <div id="user_name"> User Name : {{ user_name }}</div>
 <div id="description"> Description : {{ description }}</div>
 <div id="blur"> Blur: {% if blur %}Yes{% else %}No{% endif %}</div>
