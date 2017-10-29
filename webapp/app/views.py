@@ -19,7 +19,7 @@ def result():
 @app.route('/recommend')
 def recommend():
     film_id = request.args.get('film_id') or 3
-    return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(film_id))
+    return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(int(film_id))
 # http://localhost:5000/result?description=DescriptionBis&user_name=Eric
 # Main
 if __name__ == "__main__":
