@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import Flask, render_template, request
-from .main import recommend_
+from .main import getRecommendation
 # Init
 app = Flask(__name__)
 app.config.from_object('config')
