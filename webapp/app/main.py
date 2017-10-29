@@ -163,4 +163,4 @@ def getRecommendation(film_id ):
 def getRecommendation_display(selectedMovie,recommendations ):
     selectedMovie_ = selectedMovie.to_string(index=False,header=False)
     recommendations_ = recommendations.to_string(index=False,header=False)
-    return selectedMovie_ + '<div>' + recommendations_ '</div>''
+    return selectedMovie_ + '<div>' + recommendations_ '</div>'
