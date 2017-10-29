@@ -90,4 +90,4 @@ def getRecommendation_display(selectedMovie,recommendations ):
     else:
         selectedMovie_ = selectedMovie[['movie_title','film_id']].to_string(index=False,header=False)
         recommendations_ = recommendations[['movie_title','film_id']].to_string(index=False,header=False)
-        return selectedMovie_ + '------------' + recommendations_
+        return selectedMovie_ + ' ------------------ ' + recommendations_

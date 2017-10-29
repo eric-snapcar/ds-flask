@@ -7,20 +7,11 @@ app.config.from_object('config')
 # App
 @app.route('/')
 def index():
-    return render_template('index.html')
-@app.route('/result')
-def result():
-    gender = request.args.get('gender')
-    user_name = request.args.get('user_name') or "None"
-    description = request.args.get('description') or "None"
-    return render_template('result.html', user_name=user_name, description = description , blur = True)
-
-
+    return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(int(film_id)))
 @app.route('/recommend')
 def recommend():
     film_id = request.args.get('film_id') or 3
     return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(int(film_id)))
-# http://localhost:5000/result?description=DescriptionBis&user_name=Eric
 # Main
 if __name__ == "__main__":
     app.run()
