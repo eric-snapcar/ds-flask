@@ -13,6 +13,12 @@ def result():
     user_name = request.args.get('user_name') or "None"
     description = request.args.get('description') or "None"
     return render_template('result.html', user_name=user_name, description = description , blur = True)
+
+
+@app.route('/recommend')
+def result():
+    film_id = request.args.get('film_id') or None
+    return render_template('result.html', film_id=film_id, description = description , blur = True)
 # http://localhost:5000/result?description=DescriptionBis&user_name=Eric
 # Main
 if __name__ == "__main__":
