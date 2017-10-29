@@ -77,7 +77,7 @@ def init():
     global movies
     global distanceMatrix
     selected_columns_data = ['genres','duration','gross','director_name','budget','title_year']
-    selected_columns =  ['movie_title']
+    selected_columns =  ['movie_title'] + selected_columns_data
     movies, data_ = clean( data , selected_columns , selected_columns_data)
     distanceMatrix = distance_matrix_(data_)
     return
@@ -85,6 +85,6 @@ def getRecommendation(film_id ):
     selectedMovie, recommendations = getRecommendation_(movies,distanceMatrix,film_id)
     return getRecommendation_display(selectedMovie,recommendations  )
 def getRecommendation_display(selectedMovie,recommendations ):
-    selectedMovie_ = selectedMovie.to_string(index=False,header=False)
-    recommendations_ = recommendations.to_string(index=False,header=False)
+    selectedMovie_ = selectedMovie[['movie_title','film_id']].to_string(index=False,header=False)
+    recommendations_ = recommendations[['movie_title','film_id']].to_string(index=False,header=False)
     return selectedMovie_ + '\n----------------------\n' + recommendations_
