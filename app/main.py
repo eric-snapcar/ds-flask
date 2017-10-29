@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
+
 import pandas as pd
 from sklearn import preprocessing
 from pandas import get_dummies
 from sklearn.cluster import KMeans
 from sklearn import metrics
-from scipy.spatial.distance import pdist, squareform
+
 #import matplotlib.pyplot as plt
 
 def clean( data , selected_columns , selected_columns_data):
@@ -67,8 +69,8 @@ def distance_matrix_( data_ ):
         data_ = data_.drop(['director_name'], axis=1)
         return data_;
     def distance_matrix( data ):
-        dist_ = pdist(data, 'euclidean')
-        dist_ = pd.DataFrame(squareform(dist_))
+        dist_ = metrics.pairwise.euclidean_distances(data)
+        dist_ = pd.DataFrame(dist_)
         return dist_
     data_ = addColumnForEachGenre(data_)
     data_ = addColumnForEachDirector(data_)
