@@ -31,8 +31,6 @@ def cleanAndSelect_v1(data):
 
     df1 = info[['movie_title','film_id','genres','director_name','title_year']].head(10)
     df2 = info[['movie_title','film_id','genres','director_name','title_year']].sample(10)
-    print(df1.append(df2))
-
 
     #Ajout des genres
     data_ = addColumnForEachWord(data_,'genres', 0)
@@ -134,7 +132,7 @@ def normalize(data):
     return data_normalized
 #%%
 def init():
-    data = pd.read_csv('movie_metadata.csv', sep=",")
+    data = pd.read_csv('data.csv', sep=",")
     global info_1
     global d_matrix
     data_1, info_1 = cleanAndSelect_v1(data)
@@ -148,7 +146,7 @@ def getRecommendation__(film_id):
         res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
     else:
         selected_columns_display = ['movie_title', 'genres','director_name','title_year']
-        res = movie[selected_columns_display].to_string(index=False,header=False) +
+        res = movie[selected_columns_display].to_string(index=False,header=False)
         res += ' ------------------ '
         res += recommendations[selected_columns_display].to_string(index=False,header=False)
     return res
