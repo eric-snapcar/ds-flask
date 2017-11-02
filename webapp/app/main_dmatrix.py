@@ -142,7 +142,7 @@ def init():
     d_matrix = distance_matrix(data_1_norm)
     return
 
-def getRecommendation(film_id):
+def getRecommendation__(film_id):
     movie, recommendations = recommend(info_1, film_id,d_matrix)
     if movie is None or recommendations is None:
         res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
@@ -152,4 +152,3 @@ def getRecommendation(film_id):
         res += ' ------------------ '
         res += recommendations[selected_columns_display].to_string(index=False,header=False)
     return res
- 
