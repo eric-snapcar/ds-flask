@@ -128,6 +128,8 @@ def init():
     data_2 = pd.concat([data_2, labels.to_frame('cluster')], axis = 1)
     return
 def getRecommendation_(film_id):
+    return "..."
+"""
     movie, recommendations = recommend_clustering(data_2, info_2, film_id)
     if movie is None or recommendations is None:
         res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
@@ -137,3 +139,4 @@ def getRecommendation_(film_id):
         res += ' ------------------ '
         res += recommendations[selected_columns_display].to_string(index=False,header=False)
     return res
+"""
