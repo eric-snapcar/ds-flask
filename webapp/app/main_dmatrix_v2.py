@@ -28,9 +28,6 @@ def cleanAndSelect_vf(data):
     info = data_
     data_ = data_[var_selected].copy()
 
-    df1 = info[['movie_title','film_id','genres','director_name','title_year']].head(10)
-    df2 = info[['movie_title','film_id','genres','director_name','title_year']].sample(10)
-    print(df1.append(df2))
 
     #Ajout des réalisateurs et des langues
     data_ = addColumnForEachContent(data_,'director_name', 0)
@@ -166,7 +163,7 @@ def init():
 
 def getRecommendation(film_id):
     if init_:
-        movie, recommendations = recommend(data_2, info_2, film_id)
+        movie, recommendations = recommend(data_f, info_f, film_id, dmatrix_f)
         return movie, recommendations
     else:
         return None, None

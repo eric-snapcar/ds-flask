@@ -7,5 +7,5 @@ from .views import app
 #main.init()
 #main_clustering.init()
 #main_dmatrix.init()
-main_clustering_v2.init()
+#main_clustering_v2.init()
 main_dmatrix_v2.init()
