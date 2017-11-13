@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import Flask, render_template, request
 from .main import getRecommendation
-from .main_clustering import getRecommendation_
-from .main_dmatrix import getRecommendation__
+from .main_clustering import getRecommendation_ as getRecommendation_clustering
+from .main_dmatrix import getRecommendation__ as getRecommendation_distance
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -18,7 +18,10 @@ def display(movie, recommendations ):
         res += recommendations[selected_columns_display].to_string(index=False,header=False)
     return res
 def render(film_id):
-    return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(int(film_id)),recommendation_ = getRecommendation_(int(film_id)),recommendation__ = getRecommendation__(int(film_id)))
+    recommendation1 =  getRecommendation(int(film_id))
+    recommendation2 =  getRecommendation_clustering(int(film_id))
+    recommendation3 =  getRecommendation_distance(int(film_id))
+    return render_template('recommend.html', film_id=film_id, recommendation1 = recommendation1, recommendation2 = recommendation2, recommendation3 = recommendation3)
 
 @app.route('/')
 def index():
