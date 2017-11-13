@@ -1,4 +1,10 @@
-
+<script>
+function buttonClicked() {
+    location.href = window.location.pathname +"?film_id="+ document.getElementById("input").value
+}
+</script>
+<input id="input" autofocus placeholder="Id de film">
+<button onclick="buttonClicked()">OK</button>
 <h1>Algo 1</h1>
 <div >{{ recommendation1 }}</div>
 <h1>Algo 2</h1>

@@ -102,11 +102,15 @@ def distance_matrix(data):
     return dist_
 def getRecommendation_(index_bis , info, distanceMatrix):
     # renvoie les 5 éléments les plus proches de 'index_bis' dans 'distance_matrix'
-    nsmallest_list = distanceMatrix.nsmallest(6, index_bis).index.values.tolist()
+    print "TEST"
+    print index_bis
+    print info.head()
+    print distanceMatrix.head()
+    nsmallest_list = distanceMatrix.nsmallest(6, str(index_bis)).index.values.tolist()
     del nsmallest_list[0]
     res = info.iloc[nsmallest_list]
     return res
-def recommend(data, info, film_id, d_matrix):
+def recommend( info, film_id, d_matrix):
     #Renvoie les films recommandés par la fonction 'getRecommend'
     index = info.index[info['film_id'] == film_id].tolist()
     if len(index) == 0:
@@ -159,12 +163,39 @@ def init():
     data_f, info_f = cleanAndSelect_vf(data)
     data_f_norm = normalize(data_f)
     dmatrix_f = distance_matrix(data_f_norm)
-    data = None
+    dmatrix_f.to_csv("dmatrix_f.csv", sep=',',index=False)
+    info_f.to_csv("info_f.csv", sep=',', index=False)
+    print dmatrix_f.shape
+    print dmatrix_f.head()
+    print info_f.shape
+    print info_f.head()
     return
-
+def init_cache():
+    global init_
+    init_ = True
+    global info_f
+    global dmatrix_f
+    dmatrix_f = pd.read_csv('dmatrix_f.csv', sep=',')
+    info_f = pd.read_csv('info_f.csv', sep=',')
+    print dmatrix_f.shape
+    print dmatrix_f.head()
+    print info_f.shape
+    print info_f.head()
+    return
 def getRecommendation(film_id):
     if init_:
-        movie, recommendations = recommend(data_f, info_f, film_id, dmatrix_f)
+        movie, recommendations = recommend(info_f, film_id, dmatrix_f)
         return movie, recommendations
     else:
         return None, None
+
+# TEST
+#init()
+"""
+init_cache()
+print getRecommendation(10)
+"""
+"""
+from guppy import hpy; h=hpy()
+print h.heap()
+"""
