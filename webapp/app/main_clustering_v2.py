@@ -144,7 +144,10 @@ def print_var(data, info = None):
     print('Le nombre de variables est de :',len(list(data)))
     return
 #%%
+init_ = False
 def init():
+    global init_
+    init_ = True
     data = pd.read_csv('movie_metadata.csv', sep=",")
     global info_2
     global data_2
@@ -157,5 +160,8 @@ def init():
     data_2 = pd.concat([data_2, labels.to_frame('cluster')], axis = 1)
     return
 def getRecommendation(film_id):
-    movie, recommendations = recommend_clustering(data_2, info_2, film_id)
-    return
+    if init_:
+        movie, recommendations = recommend_clustering(data_2, info_2, film_id)
+        return movie, recommendations
+    else:
+        return None, None
