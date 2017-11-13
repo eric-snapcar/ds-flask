@@ -71,8 +71,10 @@ def distance_matrix_( data_ ):
     data_ = addColumnForEachDirector(data_)
     data_ = preprocessing.scale(data_, with_mean=False )
     return distance_matrix(data_)
-
+init_ = False
 def init():
+    global init_
+    init_ = True
     data = pd.read_csv('data.csv', sep=",")
     global movies
     global distanceMatrix
@@ -82,15 +84,15 @@ def init():
     distanceMatrix = distance_matrix_(data_)
     return
 def getRecommendation(film_id ):
-    selectedMovie, recommendations = getRecommendation_(movies,distanceMatrix,film_id)
-    return getRecommendation_display(selectedMovie,recommendations  )
+    if init_:
+        selectedMovie, recommendations = getRecommendation_(movies,distanceMatrix,film_id)
+        return getRecommendation_display(selectedMovie,recommendations  )
+    else:
+        return "..."
 def getRecommendation_display(selectedMovie,recommendations ):
-    """
     if selectedMovie is None or recommendations is None:
         return 'Recommendation not available for this movie'
     else:
         selectedMovie_ = selectedMovie[['movie_title','film_id']].to_string(index=False,header=False)
         recommendations_ = recommendations[['movie_title','film_id']].to_string(index=False,header=False)
         return selectedMovie_ + ' ------------------ ' + recommendations_
-    """
-    return "..."

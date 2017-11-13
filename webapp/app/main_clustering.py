@@ -98,7 +98,6 @@ def recommend_clustering(data, info,film_id):
                 lis_index = lis_index.remove(index)
             else:
                 lis_index = data[data['cluster']==cluster].sort_values('new_score').head(5).index.tolist()
-
         recommendations = info.iloc[lis_index]
     return movie, recommendations
 def print_(string):
@@ -112,7 +111,10 @@ def normalize(data):
     data_normalized = pd.DataFrame(np_scaled)
     return data_normalized
 #%%
+init_ = False
 def init():
+    global init_
+    init_ = True
     data = pd.read_csv('data.csv', sep=",")
     global info_2
     global data_2
@@ -128,15 +130,15 @@ def init():
     data_2 = pd.concat([data_2, labels.to_frame('cluster')], axis = 1)
     return
 def getRecommendation_(film_id):
-    return "..."
-"""
-    movie, recommendations = recommend_clustering(data_2, info_2, film_id)
-    if movie is None or recommendations is None:
-        res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
+    if init_:
+        movie, recommendations = recommend_clustering(data_2, info_2, film_id)
+        if movie is None or recommendations is None:
+            res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
+        else:
+            selected_columns_display = ['movie_title', 'genres','director_name','title_year']
+            res = movie[selected_columns_display].to_string(index=False,header=False)
+            res += ' ------------------ '
+            res += recommendations[selected_columns_display].to_string(index=False,header=False)
+        return res
     else:
-        selected_columns_display = ['movie_title', 'genres','director_name','title_year']
-        res = movie[selected_columns_display].to_string(index=False,header=False)
-        res += ' ------------------ '
-        res += recommendations[selected_columns_display].to_string(index=False,header=False)
-    return res
-"""
+        return "..."

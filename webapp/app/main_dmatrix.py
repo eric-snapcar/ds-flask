@@ -131,7 +131,10 @@ def normalize(data):
     data_normalized = pd.DataFrame(np_scaled)
     return data_normalized
 #%%
+init_ = False
 def init():
+    global init_
+    init_ = True
     data = pd.read_csv('data.csv', sep=",")
     global info_1
     global d_matrix
@@ -139,17 +142,16 @@ def init():
     data_1_norm = normalize(data_1)
     d_matrix = distance_matrix(data_1_norm)
     return
-
 def getRecommendation__(film_id):
-
-    movie, recommendations = recommend(info_1, film_id,d_matrix)
-    if movie is None or recommendations is None:
-        res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
+    if init_:
+        movie, recommendations = recommend(info_1, film_id,d_matrix)
+        if movie is None or recommendations is None:
+            res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
+        else:
+            selected_columns_display = ['movie_title', 'genres','director_name','title_year']
+            res = movie[selected_columns_display].to_string(index=False,header=False)
+            res += ' ------------------ '
+            res += recommendations[selected_columns_display].to_string(index=False,header=False)
+        return res
     else:
-        selected_columns_display = ['movie_title', 'genres','director_name','title_year']
-        res = movie[selected_columns_display].to_string(index=False,header=False)
-        res += ' ------------------ '
-        res += recommendations[selected_columns_display].to_string(index=False,header=False)
-    return res
-
-    #return "..."
+        return "..."

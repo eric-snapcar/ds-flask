@@ -7,14 +7,27 @@ from .main_dmatrix import getRecommendation__
 app = Flask(__name__)
 app.config.from_object('config')
 
+
+def display(movie, recommendations ):
+    if movie is None or recommendations is None:
+        res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
+    else:
+        selected_columns_display = ['movie_title', 'genres','director_name','title_year']
+        res = movie[selected_columns_display].to_string(index=False,header=False)
+        res += ' ------------------ '
+        res += recommendations[selected_columns_display].to_string(index=False,header=False)
+    return res
+def render(film_id):
+    return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(int(film_id)),recommendation_ = getRecommendation_(int(film_id)),recommendation__ = getRecommendation__(int(film_id)))
+
 @app.route('/')
 def index():
     film_id = request.args.get('film_id') or 3
-    return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(int(film_id)))
+    return render(film_id)
 @app.route('/recommend')
 def recommend():
     film_id = request.args.get('film_id') or 3
-    return render_template('recommend.html', film_id=film_id, recommendation = getRecommendation(int(film_id)),recommendation_ = getRecommendation_(int(film_id)),recommendation__ = getRecommendation__(int(film_id)))
+    return render(film_id)
 
 if __name__ == "__main__":
     app.run()
