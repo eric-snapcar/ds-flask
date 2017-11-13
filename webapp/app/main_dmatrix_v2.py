@@ -159,6 +159,7 @@ def init():
     data_f, info_f = cleanAndSelect_vf(data)
     data_f_norm = normalize(data_f)
     dmatrix_f = distance_matrix(data_f_norm)
+    data = None
     return
 
 def getRecommendation(film_id):
