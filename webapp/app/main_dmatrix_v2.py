@@ -118,14 +118,6 @@ def recommend(data, info, film_id, d_matrix):
         index_ = index[0]
     movie = info.iloc[[index_]]
     recommendations = getRecommendation_(index_,info,d_matrix)
-    if movie is None or recommendations is None:
-        print('Sorry, we are not able to recommend you a movie based on the selected movie')
-    else:
-        selected_columns_display = ['movie_title', 'genres','director_name','title_year']
-        print_("Selected Movie:")
-        print(movie[selected_columns_display].to_string(index=False,header=False))
-        print_("Recommendations:")
-        print(recommendations[selected_columns_display].to_string(index=False,header=False))
     return movie, recommendations
 def print_(string):
     # Format de print
@@ -163,7 +155,7 @@ init_ = False
 def init():
     global init_
     init_ = True
-    data = pd.read_csv('movie_metadata.csv', sep=",")
+    data = pd.read_csv('data.csv', sep=",")
     global info_f
     global dmatrix_f
     global data_f
@@ -174,7 +166,7 @@ def init():
 
 def getRecommendation(film_id):
     if init_:
-        movie, recommendations = recommend_clustering(data_2, info_2, film_id)
+        movie, recommendations = recommend(data_2, info_2, film_id)
         return movie, recommendations
     else:
         return None, None

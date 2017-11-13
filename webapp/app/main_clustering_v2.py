@@ -24,7 +24,6 @@ def cleanAndSelect_v2(data):
 
     df1 = info[['movie_title','film_id','genres','director_name','title_year']].head(10)
     df2 = info[['movie_title','film_id','genres','director_name','title_year']].sample(10)
-    print(df1.append(df2))
 
     #Ajout des genres
     data_ = addColumnForEachWord(data_,'genres', 0)
@@ -102,16 +101,8 @@ def recommend_clustering(data, info,film_id):
                 lis_index = data[data['cluster']==cluster].sort_values('new_score').head(5).index.tolist()
 
         recommendations = info.iloc[lis_index]
+        return movie, recommendations
 
-        if movie is None or recommendations is None:
-            print('Sorry, we are not able to recommend you a movie based on the selected movie')
-        else:
-            selected_columns_display = ['movie_title', 'genres','director_name','title_year']
-            print_("Selected Movie:")
-            print(movie[selected_columns_display].to_string(index=False,header=False))
-            print_("Recommendations:")
-            print(recommendations[selected_columns_display].to_string(index=False,header=False))
-            return movie, recommendations
 def print_(string):
     # Format de print
     separator = "---------------------------"
@@ -148,7 +139,7 @@ init_ = False
 def init():
     global init_
     init_ = True
-    data = pd.read_csv('movie_metadata.csv', sep=",")
+    data = pd.read_csv('data.csv', sep=",")
     global info_2
     global data_2
     data_2, info_2 = cleanAndSelect_v2(data)
