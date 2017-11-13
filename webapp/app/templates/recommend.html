@@ -1,7 +1,18 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
 <script>
 function buttonClicked() {
     location.href = window.location.pathname +"?film_id="+ document.getElementById("input").value
 }
+$(document).ready(function(){
+  $("#input").on('keyup', function (e) {
+      if (e.keyCode == 13) {
+          buttonClicked()
+      }
+  })
+});
+
 </script>
 <input id="input" autofocus placeholder="Id de film">
 <button onclick="buttonClicked()">OK</button>
