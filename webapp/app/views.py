@@ -9,23 +9,25 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 
-def display(movie, recommendations ):
+def display_movie(movie,recommendations ):
     if movie is None or recommendations is None:
         res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
     else:
-        selected_columns_display = ['movie_title', 'genres','director_name','title_year']
-        res = movie[selected_columns_display].to_string(index=False,header=False)
+        res = movie.to_html()
         res += ' ------------------ '
-        res += recommendations[selected_columns_display].to_string(index=False,header=False)
-    return res
+        res += recommendations.to_html()
+    return recommendations
 def render(film_id):
+    """
     recommendation1 =  getRecommendation(int(film_id))
     movie2, recommendations2 = getRecommendation_clustering_v2(int(film_id))
     recommendation2 =   display(movie2, recommendations2 ) #getRecommendation_clustering(int(film_id))
-    movie3, recommendations3 = getRecommendation_distance_v2(int(film_id))
-    recommendation3 = display(movie3, recommendations3) #getRecommendation_distance(int(film_id))
-    return render_template('recommend.html', film_id=film_id, recommendation1 = recommendation1, recommendation2 = recommendation2, recommendation3 = recommendation3)
-
+    """
+    movie, recommendations = getRecommendation_distance_v2(int(film_id))
+    if movie is None or recommendations is None:
+        return render_template('recommend.html',movie = None, recommendation = None, available = False)
+    else :
+        return render_template('recommend.html',movie = movie.to_html(index=False), recommendation = recommendations.to_html(index=False), available = True)
 @app.route('/')
 def index():
     film_id = request.args.get('film_id') or 3

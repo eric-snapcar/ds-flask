@@ -14,11 +14,22 @@ $(document).ready(function(){
 });
 
 </script>
+<style>
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+</style>
 <input id="input" autofocus placeholder="Id de film">
 <button onclick="buttonClicked()">OK</button>
-<h1>Algo 1</h1>
-<div >{{ recommendation1 }}</div>
-<h1>Algo 2</h1>
-<div >{{ recommendation2 }}</div>
-<h1>Algo 3</h1>
-<div >{{ recommendation3 }}</div>
+
+{% if available %}
+<h2 >Selected Movie:</h2>
+<div >{{ movie |safe }}</div>
+<h2 >Recommendation:</h2>
+<div >{{ recommendation |safe }}</div>
+{% else %}
+<h2 >Sorry, we are not able to recommend you a movie based on the selected movie</h2>
+{% endif %}
