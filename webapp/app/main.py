@@ -109,37 +109,11 @@ def recommend( info, film_id, d_matrix):
     movie = info.iloc[[index_]]
     recommendations = getRecommendation_(index_,info,d_matrix)
     return movie, recommendations
-def print_(string):
-    # Format de print
-    separator = "---------------------------"
-    print(separator + " " + string + " " + separator)
-    return
 def normalize(data):
     min_max_scaler = preprocessing.MinMaxScaler()
     np_scaled = min_max_scaler.fit_transform(data)
     data_normalized = pd.DataFrame(np_scaled)
     return data_normalized
-def pca_trans(data_norm, n_components):
-    pca = decomposition.PCA(n_components)
-    pca.fit(data_norm)
-    data_trans = pca.transform(data_norm)
-    pca.explained_variance_ratio_.sum()
-    return data_trans
-def print_var(data, info = None):
-    #Affiche les variables dans le dataframe df, le data type, ainsi que les 5 premiers éléments si 'afficher'='oui'
-
-    print('Variables')
-    print()
-    for var in list(data):
-        print('-------------------------------------------------')
-        #print(var,' (',df[var].dtype,')','     ',df[var][0],',',df[var][1],',',df[var][2],',',df[var][3],',',df[var][4]) # A améliorer
-        print(var,' (',data[var].dtype,')','      ')
-        if info == 'oui':
-            print(data[var][0:4])
-    print('-------------------------------------------------')
-    print()
-    print('Le nombre de variables est de :',len(list(data)))
-    return
 def build_cache():
     global init_
     data = pd.read_csv('data.csv', sep=",")

@@ -3,16 +3,6 @@ from flask import Flask, render_template, request
 from .main import getRecommendation
 app = Flask(__name__)
 app.config.from_object('config')
-
-
-def display_movie(movie,recommendations ):
-    if movie is None or recommendations is None:
-        res = 'Sorry, we are not able to recommend you a movie based on the selected movie'
-    else:
-        res = movie.to_html()
-        res += ' ------------------ '
-        res += recommendations.to_html()
-    return recommendations
 def render(film_id):
     movie, recommendations = getRecommendation(int(film_id))
     if movie is None or recommendations is None:
