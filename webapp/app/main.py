@@ -136,4 +136,4 @@ def init_cache():
 def getRecommendation(film_id):
     movie, recommendations = recommend(info_f, film_id, dmatrix_f)
     return movie, recommendations
-#build_cache()
+build_cache()
