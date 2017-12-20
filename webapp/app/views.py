@@ -13,10 +13,7 @@ def render(film_id):
 def index():
     film_id = request.args.get('film_id') or 3
     return render(film_id)
-@app.route('/recommend')
-def recommend():
-    film_id = request.args.get('film_id') or 3
-    return render(film_id)
+
 
 if __name__ == "__main__":
     app.run()
