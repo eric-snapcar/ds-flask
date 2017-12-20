@@ -127,11 +127,13 @@ def build_cache():
     info_f.to_csv("../info_f.csv", sep=',', index=False)
     return
 def init_cache():
+    """
     global init_
     global info_f
     global dmatrix_f
     dmatrix_f = pd.read_csv('dmatrix_f.csv', sep=',')
     info_f = pd.read_csv('info_f.csv', sep=',')
+    """
     return
 def getRecommendation(film_id):
     movie, recommendations = recommend(info_f, film_id, dmatrix_f)
