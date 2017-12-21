@@ -64,7 +64,7 @@ def getPrediction(origin, destination, carrier_code, date, hour_departure, hour_
     return predict(origin, destination, carrier_code, date, hour_departure, hour_arrival, data_, data_ref, list_para, list_flight_filtered, scalingDF, categDF)
 def test():
     return getPrediction("DFW", "DTW", "AA", "20/01", 11, 14)
- 
+
 """
    Unnamed: 0  MONTH  DAY_OF_MONTH  DAY_OF_WEEK UNIQUE_CARRIER ORIGIN DEST  \
 0           0      1             6            3             AA    DFW  DTW
