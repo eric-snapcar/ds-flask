@@ -7,3 +7,5 @@ Projet3: il faut créer les csv dmatrix_f.csv et info_f.csv avant grâce à weba
 
 Projet4: il faut importer le csv database du Google Drive
 data_flight_delay_2016.csv
+heroku ps:scale web=1
+heroku ps:scale web=0

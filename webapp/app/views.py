@@ -11,7 +11,7 @@ def render(film_id):
         return render_template('recommend.html',movie = movie.to_html(index=False), recommendation = recommendations.to_html(index=False), available = True)
 @app.route('/')
 def index():
-    return render_template('index.html',test())
+    return render_template('index.html', test = test())
 
 
 if __name__ == "__main__":
