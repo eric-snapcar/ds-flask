@@ -1,6 +1,8 @@
 Flask==0.12.2
 gunicorn==19.7.1
 pandas==0.21.0
+numpy==1.10.4
+scipy==0.17.0
 sklearn==0.0
 distribute
 wsgiref
