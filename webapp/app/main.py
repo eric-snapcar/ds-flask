@@ -14,11 +14,11 @@ import datetime
 #%%
 def charge():
     #chargement des données
-    data_ = pd.read_csv('data_tronque_global.csv', sep=",",error_bad_lines=False)
-    coefs_ = pd.read_csv('coefs_global.csv', sep=",",error_bad_lines=False)
-    data_ref = pd.read_csv('ref_airport.csv', sep=",",error_bad_lines=False)
-    dic_airport = pd.read_csv('dic_airport.csv', sep=",",error_bad_lines=False)
-    data_carrier = pd.read_csv('data_carrier.csv', sep=",",error_bad_lines=False)
+    data_ = pd.read_csv('data/data_tronque_global.csv', sep=",",error_bad_lines=False)
+    coefs_ = pd.read_csv('data/coefs_global.csv', sep=",",error_bad_lines=False)
+    data_ref = pd.read_csv('data/ref_airport.csv', sep=",",error_bad_lines=False)
+    dic_airport = pd.read_csv('data/dic_airport.csv', sep=",",error_bad_lines=False)
+    data_carrier = pd.read_csv('data/data_carrier.csv', sep=",",error_bad_lines=False)
 
     coefs = coefs_['INTERCEPT_COEFS'][1:]
     intercept = coefs_['INTERCEPT_COEFS'][0]
