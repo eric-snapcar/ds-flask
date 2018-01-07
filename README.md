@@ -9,3 +9,7 @@ Projet4: il faut importer le csv database du Google Drive
 data_flight_delay_2016.csv
 heroku ps:scale web=1
 heroku ps:scale web=0
+
+
+Pour les test en local:
+la racine des csv et le dossier actif du terminal dans lequel on lance le script python

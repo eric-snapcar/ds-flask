@@ -81,8 +81,8 @@ def test():
 
 
 #%%
-data_, data_ref, coefs, intercept, list_flight, scalingDF, categDF, dic_airport, data_carrier = charge()
-print test()
+#data_, data_ref, coefs, intercept, list_flight, scalingDF, categDF, dic_airport, data_carrier = charge()
+#print test()
 """
    Unnamed: 0  MONTH  DAY_OF_MONTH  DAY_OF_WEEK UNIQUE_CARRIER ORIGIN DEST  \
 0           0      1             6            3             AA    DFW  DTW
