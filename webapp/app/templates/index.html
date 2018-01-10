@@ -28,9 +28,12 @@ class App extends React.Component {
     super(props)
     this.onSubmit = this.onSubmit.bind(this);
   }
-  redirect(origin,destination,carrier,date,hour){
-    let day = date.split('/')[0];
-    let month = date.split('/')[1];
+  redirect(origin,destination,carrier,date_,hour){
+    let date = date_.split('/')
+    let day = date[0];
+    let month = "";
+    if (date.length > 1){
+      month = date[1];}
     location.href = window.location.pathname +"?origin="+origin+"&destination="+destination+"&carrier="+carrier+"&day="+day+"&month="+month+"&hour="+hour;
   }
   onSubmit(event){
