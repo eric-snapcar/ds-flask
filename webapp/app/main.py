@@ -64,11 +64,7 @@ def predict_(origin, destination, carrier_code, date, hour_departure, data_ref, 
         scale = pd.DataFrame([(distance, elapsed_time,holi)], columns =['DISTANCE', 'CRS_ELAPSED_TIME','HADAYS'])
         categ = pd.DataFrame([(month, day_of_week, origin_num, dest_num, arrival_time, hour_departure, carrier, week)], columns = ['MONTH', 'DAY_OF_WEEK', 'ORIGIN_NUM', 'DEST_NUM', 'ARR_HOUR', 'DEP_HOUR', 'CARRIER_CODE', 'WEEK'])
     else:
-        print('The flight does not exist, please check again your flight info:')
-        print('     Origin and Destination Airport Code are written in a 3 letter capital format')
-        print('     Carrier is 2 letter/number capital format')
-        print('     Carrier is 2 letter/number capital format')
-        print('     Date is in the format DD/MM')
+        return 'The flight does not exist, please check again your flight info:\n'+'Origin and Destination Airport Code are written in a 3 letter capital format\n'+'Carrier is 2 letter/number capital format\n'+'Carrier is 2 letter/number capital format\n'+'Date is in the format DD/MM'
 
     #encoder = OneHotEncoder() # Create encoder objec
     #encoder.fit(categDF)
