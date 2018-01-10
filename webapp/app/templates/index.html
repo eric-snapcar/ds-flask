@@ -26,10 +26,16 @@ margin-top: 11px;
 class App extends React.Component {
   constructor(props){
     super(props)
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onSubmit(event){
     event.preventDefault();
     console.log("TEST");
+    console.log(this.originInput.value);
+    console.log(this.destinationInput.value);
+    console.log(this.carrierInput.value);
+    console.log(this.dateInput.value);
+    console.log(this.hourInput.value);
   }
   // MARK: React.Component override
   render () {
@@ -41,26 +47,26 @@ class App extends React.Component {
       <div class="form-row">
               <div class="col-6">
                 <label >Origin</label>
-                <input type="email" class="form-control" id="origin" placeholder="ATL" />
+                <input class="form-control" placeholder="ATL" ref={(input) => this.originInput = input} />
               </div>
               <div class="col-6">
                 <label >Destination</label>
-                <input type="password" class="form-control" id="destination" placeholder="BOS"/>
+                <input class="form-control" placeholder="BOS" ref={(input) => this.destinationInput = input}/>
               </div>
 
       </div>
       <div class="form-row">
       <div class="col-4">
         <label >Carrier</label>
-        <input type="password" class="form-control" id="carrier" placeholder="DL"/>
+        <input class="form-control" placeholder="DL" ref={(input) => this.carrierInput = input}/>
       </div>
               <div class="col-4">
                 <label >Date</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="12/12"/>
+                <input class="form-control" placeholder="12/12" ref={(input) => this.dateInput = input}/>
               </div>
               <div class="col-4">
                 <label >Hour</label>
-                <input  class="form-control" id="hour" placeholder="16"/>
+                <input  class="form-control"  placeholder="16" ref={(input) => this.hourInput = input}/>
               </div>
       </div>
       <button type="submit" class="btn btn-primary" onClick={this.onSubmit}>Submit</button>
