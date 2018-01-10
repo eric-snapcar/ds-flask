@@ -28,6 +28,11 @@ class App extends React.Component {
     super(props)
     this.onSubmit = this.onSubmit.bind(this);
   }
+  redirect(origin,destination,carrier,date,hour){
+    let day = date.split('/')[0];
+    let month = date.split('/')[1];
+    location.href = window.location.pathname +"?origin="+origin+"&destination="+destination+"&carrier="+carrier+"&day="+day+"&month="+month+"&hour="+hour;
+  }
   onSubmit(event){
     event.preventDefault();
     console.log("TEST");
@@ -36,6 +41,7 @@ class App extends React.Component {
     console.log(this.carrierInput.value);
     console.log(this.dateInput.value);
     console.log(this.hourInput.value);
+    this.redirect(this.originInput.value,this.destinationInput.value,this.carrierInput.value,this.dateInput.value,this.hourInput.value);
   }
   // MARK: React.Component override
   render () {
@@ -87,6 +93,6 @@ ReactDOM.render(
   document.getElementById('app')
 );
 </script>
-{{ test  |safe }}
+{{ prediction  |safe }}
 
 <div id="app"/>
