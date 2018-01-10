@@ -100,8 +100,8 @@ def init():
     global data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler
     data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler = charge()
     return
-def predict(origin, destination, carrier_code, date, hour_departure):
-    return predict_(origin, destination, carrier_code, date, hour_departure, data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler)
+def predict(origin, destination, carrier_code, day,month, hour_departure):
+    return predict_(origin, destination, carrier_code, day+"/"+month, int(hour_departure), data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler)
 #%%
 #data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler = charge()
 #%%
@@ -110,8 +110,8 @@ def test():
 
 
 #%%
-init()
-print test()
+#init()
+#print test()
 """
    Unnamed: 0  MONTH  DAY_OF_MONTH  DAY_OF_WEEK UNIQUE_CARRIER ORIGIN DEST  \
 0           0      1             6            3             AA    DFW  DTW
