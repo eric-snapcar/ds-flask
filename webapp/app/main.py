@@ -37,7 +37,11 @@ def charge():
 #                     'CARRIER_CODE', 'WEEK']]
 #==============================================================================
     return data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler
-def predict(origin, destination, carrier_code, date, hour_departure, data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler):
+
+def display(originCity,originCode,destCity,destCode,date,depHour,prediction):
+    return 'The flight from {} ({}) to {} ({}) on {} at {} will have a delay of {} min'.format(originCity,originCode,destCity,destCode,date,depHour,prediction)
+
+def predict_(origin, destination, carrier_code, date, hour_departure, data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler):
     flight = origin +'|'+destination+'|'+carrier_code
     day = int(date.split('/')[0])
     month = int(date.split('/')[1])
@@ -75,10 +79,12 @@ def predict(origin, destination, carrier_code, date, hour_departure, data_ref, l
     x_to_predict = sparse.hstack((scalingDF_sparse, categDF_encoded))
     y_predicted = x_to_predict.toarray().dot(coefs) + intercept
     y_predicted = round(y_predicted[0])
+    """
     if y_predicted < 0:
         print('The flight from ',data_ref[data_ref['CODE']==origin]['CITY'],' (',origin,') to ',data_ref[data_ref['CODE']==destination]['CITY'], ' (',destination,') on ',date.strftime('%Y-%m-%d'),' at ',hour_departure,'o\'clock will have an advance of ',-1*y_predicted,' min')
     else:
         print('The flight from ',data_ref[data_ref['CODE']==origin]['CITY'],' (',origin,') to ',data_ref[data_ref['CODE']==destination]['CITY'], ' (',destination,') on ',date.strftime('%Y-%m-%d'),' at ',hour_departure,'o\'clock will have a delay of ',y_predicted,' min')
+    """
     originCity = data_ref[data_ref['CODE']==origin]['CITY']
     originCode = origin
     destCity = data_ref[data_ref['CODE']==destination]['CITY']
@@ -88,26 +94,24 @@ def predict(origin, destination, carrier_code, date, hour_departure, data_ref, l
     prediction = y_predicted
     return display(originCity,originCode,destCity,destCode,date,depHour,prediction)
 #%%
-def display(originCity,originCode,destCity,destCode,date,depHour,prediction):
-    return 'The flight from {} ({}) to {} ({}) on {} at {} will have a delay of {} min'.format(originCity,originCode,destCity,destCode,date,depHour,prediction)
+
 
 def init():
     global data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler
     data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler = charge()
     return
-def Predict(origin, destination, carrier_code, date, hour_departure, data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler):
-    predict(origin, destination, carrier_code, date, hour_departure, data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler)
-    return
+def predict(origin, destination, carrier_code, date, hour_departure):
+    return predict_(origin, destination, carrier_code, date, hour_departure, data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler)
 #%%
-data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler = charge()
+#data_ref, coefs, intercept, list_flight, dic_airport, data_carrier, encoder, scaler = charge()
 #%%
 def test():
-    return predict('ATL', 'BOS', 'DL', '12/12', 16, data_ref, list_flight, dic_airport, coefs, intercept, encoder, scaler)
- 
+    return predict('ATL', 'BOS', 'DL', '12/12', 16)
+
 
 #%%
-#data_, data_ref, coefs, intercept, list_flight, scalingDF, categDF, dic_airport, data_carrier = charge()
-#print test()
+init()
+print test()
 """
    Unnamed: 0  MONTH  DAY_OF_MONTH  DAY_OF_WEEK UNIQUE_CARRIER ORIGIN DEST  \
 0           0      1             6            3             AA    DFW  DTW

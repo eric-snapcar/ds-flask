@@ -11,6 +11,12 @@ def render(film_id):
         return render_template('recommend.html',movie = movie.to_html(index=False), recommendation = recommendations.to_html(index=False), available = True)
 @app.route('/')
 def index():
+    origin = request.args.get('origin')
+    destination = request.args.get('destination')
+    carrier = request.args.get('carrier')
+    day = request.args.get('day')
+    month = request.args.get('month')
+    hour = request.args.get('hour')
     return render_template('index.html', test = test())
 
 
