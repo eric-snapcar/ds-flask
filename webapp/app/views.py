@@ -5,6 +5,8 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 @app.route('/')
+@app.route('/airdata')
+@app.route('/predict')
 def index():
     origin = request.args.get('origin') or 'ATL'
     destination = request.args.get('destination') or 'BOS'
