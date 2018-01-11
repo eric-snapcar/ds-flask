@@ -17,7 +17,6 @@
   margin-top: 56px;
   box-sizing: border-box;
   padding: 31px;
-  padding-bottom: 46px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 .form-row{
@@ -25,6 +24,9 @@
 }
 h2{
   margin-bottom: 12px;
+}
+input{
+  color:black !important;
 }
 .btn{
 margin-top: 11px;
@@ -44,13 +46,30 @@ class App extends React.Component {
         return (
           <div>
             <div id="predicWrapper">
-              <PredictController />
+              <PredictController prediction = {this.props.prediction}/>
             </div>
             <div id="predictionWrapper">
-              {this.props.prediction.value}
+              <ResultController prediction = {this.props.prediction}/>
             </div>
           </div>
         );
+  }
+}
+class ResultController extends React.Component {
+  render(){
+      return (
+        <div>
+          <div>
+              <h2>{this.props.prediction.origin} -> {this.props.prediction.destination}</h2>
+          </div>
+          <div>
+              {this.props.prediction.date} {this.props.prediction.hour}h
+          </div>
+          <div>
+              {this.props.prediction.value} min
+          </div>
+        </div>
+      )
   }
 }
 class PredictController extends React.Component {
@@ -83,25 +102,25 @@ class PredictController extends React.Component {
           <div class="form-row">
                   <div class="col-6">
                     <label >Origin</label>
-                    <input class="form-control" placeholder="ATL" ref={(input) => this.originInput = input} />
+                    <input class="form-control" placeholder="ATL" ref={(input) => this.originInput = input} value={this.props.prediction.origin}/>
                   </div>
                   <div class="col-6">
                     <label >Destination</label>
-                    <input class="form-control" placeholder="BOS" ref={(input) => this.destinationInput = input}/>
+                    <input class="form-control" placeholder="BOS" ref={(input) => this.destinationInput = input} value={this.props.prediction.destination}/>
                   </div>
           </div>
           <div class="form-row">
           <div class="col-4">
             <label >Carrier</label>
-            <input class="form-control" placeholder="DL" ref={(input) => this.carrierInput = input}/>
+            <input class="form-control" placeholder="DL" ref={(input) => this.carrierInput = input} value={this.props.prediction.carrier}/>
           </div>
                   <div class="col-4">
                     <label >Date</label>
-                    <input class="form-control" placeholder="12/12" ref={(input) => this.dateInput = input}/>
+                    <input class="form-control" placeholder="12/12" ref={(input) => this.dateInput = input} value={this.props.prediction.date}/>
                   </div>
                   <div class="col-4">
                     <label >Hour</label>
-                    <input  class="form-control"  placeholder="16" ref={(input) => this.hourInput = input}/>
+                    <input  class="form-control"  placeholder="16" ref={(input) => this.hourInput = input} value={this.props.prediction.hour}/>
                   </div>
           </div>
           <button type="submit" class="btn btn-primary" onClick={this.onSubmit}>Submit</button>
@@ -109,9 +128,8 @@ class PredictController extends React.Component {
     );
   }
 }
-let prediction = JSON.parse({{ prediction | tojson}});
-// {"origin":"ATL","hour":16,"destinationCity":"CITY","destination":"BOS","value":4,"date":"2017-12-12","originCity":"CITY"}
-console.log(JSON.stringify(prediction));
+//let prediction = JSON.parse({{ prediction | tojson}});
+let prediction = {"origin":"ATL","hour":16,"destinationCity":"CITY","destination":"BOS","value":4,"date":"2017-12-12","originCity":"CITY"};
 ReactDOM.render(
   <App prediction={prediction} />,
   document.getElementById('app')

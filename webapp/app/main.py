@@ -90,7 +90,7 @@ def predict_(origin, destination, carrier_code, date, hour_departure, data_ref, 
     date = date.strftime('%Y-%m-%d')
     hour = hour_departure
     prediction = y_predicted
-    json_ = {'origin' : origin , 'originCity':originCity,'destination':destination, 'destinationCity' : destCity, 'date' :date,'hour':hour,'value':prediction}
+    json_ = {'origin' : origin , 'originCity':originCity,'destination':destination, 'carrier':carrier_code,'destinationCity' : destCity, 'date' :date,'hour':hour,'value':prediction}
     return json.dumps(json_)
 #%%
 

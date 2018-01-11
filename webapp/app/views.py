@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from .main import predict
 app = Flask(__name__)
 app.config.from_object('config')
- 
+
 @app.route('/')
 def index():
     origin = request.args.get('origin') or 'ATL'
