@@ -50,45 +50,47 @@ class App extends React.Component {
   render () {
         return (
           <div class="wrapper">
-
-
-    <h2>Predict</h2>
-      <div class="form-row">
-              <div class="col-6">
-                <label >Origin</label>
-                <input class="form-control" placeholder="ATL" ref={(input) => this.originInput = input} />
-              </div>
-              <div class="col-6">
-                <label >Destination</label>
-                <input class="form-control" placeholder="BOS" ref={(input) => this.destinationInput = input}/>
-              </div>
-
-      </div>
-      <div class="form-row">
-      <div class="col-4">
-        <label >Carrier</label>
-        <input class="form-control" placeholder="DL" ref={(input) => this.carrierInput = input}/>
-      </div>
-              <div class="col-4">
-                <label >Date</label>
-                <input class="form-control" placeholder="12/12" ref={(input) => this.dateInput = input}/>
-              </div>
-              <div class="col-4">
-                <label >Hour</label>
-                <input  class="form-control"  placeholder="16" ref={(input) => this.hourInput = input}/>
-              </div>
-      </div>
-      <button type="submit" class="btn btn-primary" onClick={this.onSubmit}>Submit</button>
-
-
-  </div>
-
+            <PredictController/>
+          </div>
         );
   }
 }
 
 
-
+class PredictController extends React.Component {
+  render(){
+      return (
+    <div>
+        <h2>Predict</h2>
+          <div class="form-row">
+                  <div class="col-6">
+                    <label >Origin</label>
+                    <input class="form-control" placeholder="ATL" ref={(input) => this.originInput = input} />
+                  </div>
+                  <div class="col-6">
+                    <label >Destination</label>
+                    <input class="form-control" placeholder="BOS" ref={(input) => this.destinationInput = input}/>
+                  </div>
+          </div>
+          <div class="form-row">
+          <div class="col-4">
+            <label >Carrier</label>
+            <input class="form-control" placeholder="DL" ref={(input) => this.carrierInput = input}/>
+          </div>
+                  <div class="col-4">
+                    <label >Date</label>
+                    <input class="form-control" placeholder="12/12" ref={(input) => this.dateInput = input}/>
+                  </div>
+                  <div class="col-4">
+                    <label >Hour</label>
+                    <input  class="form-control"  placeholder="16" ref={(input) => this.hourInput = input}/>
+                  </div>
+          </div>
+          <button type="submit" class="btn btn-primary" onClick={this.onSubmit}>Submit</button>
+    </div>
+    );
+  }
+}
 
 
 ReactDOM.render(
