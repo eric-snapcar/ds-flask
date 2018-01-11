@@ -4,6 +4,7 @@ Created on Wed Nov 22 13:29:25 2017
 
 @author: ATruong1
 """
+import json
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
@@ -64,8 +65,9 @@ def predict_(origin, destination, carrier_code, date, hour_departure, data_ref, 
         scale = pd.DataFrame([(distance, elapsed_time,holi)], columns =['DISTANCE', 'CRS_ELAPSED_TIME','HADAYS'])
         categ = pd.DataFrame([(month, day_of_week, origin_num, dest_num, arrival_time, hour_departure, carrier, week)], columns = ['MONTH', 'DAY_OF_WEEK', 'ORIGIN_NUM', 'DEST_NUM', 'ARR_HOUR', 'DEP_HOUR', 'CARRIER_CODE', 'WEEK'])
     else:
-        return 'The flight does not exist, please check again your flight info:\n'+'Origin and Destination Airport Code are written in a 3 letter capital format\n'+'Carrier is 2 letter/number capital format\n'+'Carrier is 2 letter/number capital format\n'+'Date is in the format DD/MM'
-
+        error = 'The flight does not exist, please check again your flight info:\n'+'Origin and Destination Airport Code are written in a 3 letter capital format\n'+'Carrier is 2 letter/number capital format\n'+'Carrier is 2 letter/number capital format\n'+'Date is in the format DD/MM'
+        json_ = {'error':error}
+        return json.dumps(json_)
     #encoder = OneHotEncoder() # Create encoder objec
     #encoder.fit(categDF)
     categDF_encoded = encoder.transform(categ)
@@ -88,7 +90,8 @@ def predict_(origin, destination, carrier_code, date, hour_departure, data_ref, 
     date = date.strftime('%Y-%m-%d')
     depHour = hour_departure
     prediction = y_predicted
-    return display(originCity,originCode,destCity,destCode,date,depHour,prediction)
+    json_ = {'origin' : origin , 'originCity':originCity,'destination':destination, 'destinationCity' : destCity, 'date' :date,'hour':hour,'value':prediction}
+    return json.dumps(json_)
 #%%
 
 
