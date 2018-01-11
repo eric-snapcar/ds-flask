@@ -3,7 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <style>
-#app {display: flex;justify-content:center;}
+#app {display: flex;justify-content:center;  flex-direction:column;}
 #predicWrapper {
   width: 514px;
   margin-top: 56px;
@@ -42,11 +42,13 @@ class App extends React.Component {
   }
   render () {
         return (
-          <div id="predicWrapper">
-            <PredictController />
-          </div>
-          <div id="predictionWrapper">
-            {this.props.prediction.value}
+          <div>
+            <div id="predicWrapper">
+              <PredictController />
+            </div>
+            <div id="predictionWrapper">
+              {this.props.prediction.value}
+            </div>
           </div>
         );
   }
@@ -108,6 +110,7 @@ class PredictController extends React.Component {
   }
 }
 let prediction = JSON.parse({{ prediction | tojson}});
+console.log(prediction);
 ReactDOM.render(
   <App prediction={prediction} />,
   document.getElementById('app')
