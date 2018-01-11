@@ -4,7 +4,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <style>
 #app {display: flex;justify-content:center;}
-.wrapper {
+#predicWrapper {
+  width: 514px;
+  margin-top: 56px;
+  box-sizing: border-box;
+  padding: 31px;
+    padding-bottom: 46px;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+#predictionWrapper {
   width: 514px;
   margin-top: 56px;
   box-sizing: border-box;
@@ -22,6 +30,10 @@ h2{
 margin-top: 11px;
 }
 </style>
+<script type="text/javascript">
+
+
+</script>
 <script type="text/babel">
 class App extends React.Component {
   // MARK: React.Component override
@@ -30,8 +42,11 @@ class App extends React.Component {
   }
   render () {
         return (
-          <div class="wrapper">
-            <PredictController/>
+          <div id="predicWrapper">
+            <PredictController />
+          </div>
+          <div id="predictionWrapper">
+            {this.props.prediction.value}
           </div>
         );
   }
@@ -55,6 +70,8 @@ class PredictController extends React.Component {
   constructor(props){
     super(props)
     this.onSubmit = this.onSubmit.bind(this);
+  }
+  componentDidMount(){
     this.originInput.focus();
   }
   render(){
@@ -90,11 +107,10 @@ class PredictController extends React.Component {
     );
   }
 }
+let prediction = JSON.parse({{ prediction | tojson}});
 ReactDOM.render(
-  <App/>,
+  <App prediction={prediction} />,
   document.getElementById('app')
 );
 </script>
-{{ prediction  |safe }}
-{{ prediction.value  |safe }}
 <div id="app"/>
