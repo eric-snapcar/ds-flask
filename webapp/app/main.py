@@ -83,12 +83,12 @@ def predict_(origin, destination, carrier_code, date, hour_departure, data_ref, 
     else:
         print('The flight from ',data_ref[data_ref['CODE']==origin]['CITY'],' (',origin,') to ',data_ref[data_ref['CODE']==destination]['CITY'], ' (',destination,') on ',date.strftime('%Y-%m-%d'),' at ',hour_departure,'o\'clock will have a delay of ',y_predicted,' min')
     """
-    originCity = data_ref[data_ref['CODE']==origin]['CITY']
+    originCity = data_ref[data_ref['CODE']==origin]['CITY'].name
     originCode = origin
-    destCity = data_ref[data_ref['CODE']==destination]['CITY']
+    destCity = data_ref[data_ref['CODE']==destination]['CITY'].name
     destCode = destination
     date = date.strftime('%Y-%m-%d')
-    depHour = hour_departure
+    hour = hour_departure
     prediction = y_predicted
     json_ = {'origin' : origin , 'originCity':originCity,'destination':destination, 'destinationCity' : destCity, 'date' :date,'hour':hour,'value':prediction}
     return json.dumps(json_)
