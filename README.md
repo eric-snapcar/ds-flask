@@ -13,3 +13,11 @@ heroku ps:scale web=0
 
 Pour les test en local:
 la racine des csv et le dossier actif du terminal dans lequel on lance le script python
+
+Test en local:
+docker build .
+docker images
+docker run -p 5000:5000 -e PORT=5000 473c5d257566
+
+Test en local:
+docker ps
